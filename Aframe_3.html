@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>My kitchen</title>
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-spritesheet-component/dist/aframe-spritesheet-component.min.js"></script>
+
+    <script>
+
+        AFRAME.registerComponent('button-interaction-handler_a', {
+            init: function () {
+                var skyEl_A = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_A.setAttribute('src', '#kitchenA');
+                    skyEl_A.setAttribute('rotation', "0 90 0");
+
+                    console.log('ckick')
+                });
+            }
+        });
+        AFRAME.registerComponent('button-interaction-handler_b', {
+            init: function () {
+                var skyEl_B = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_B.setAttribute('src', '#kitchenB');
+                    skyEl_B.setAttribute('rotation', "0 -45 0");
+                    console.log('ckick')
+                });
+            }
+        });
+        AFRAME.registerComponent('rotato', {
+
+            tick: function () {
+                this.el.object3D.rotation.y -= 0.01;
+            }
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <a-scene>
+        <a-assets>
+            <audio id="click-sound" crossorigin="anonymous"
+                src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+            <img id="kitchenA" crossorigin="anonymous" src="kitchen_A.jpeg">
+            <img id="kitchenB" crossorigin="anonymous" src="kitchen_B.jpeg">
+            <img id="wheatTexture" src="wheat.png">
+            <img id="maizeTexture" src="maize.png">
+
+        </a-assets>
+
+        <a-sky id="background" src="#kitchenA" rotation="0 90 0"
+            animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+            animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade">
+            ></a-sky>
+
+        <!--
+        Since this is inside the plane, the text position is relative to the plane's position
+        If we use the property align wisely, we don't need to experiment with position.
+      -->
+
+        <a-plane button-interaction-handler_b position="1.5 -2 -9" height="1" width="2" color="#E21D2D"
+            event-set__mouseenter="scale: 1.2 1.2 1" event-set__mouseleave="scale: 1 1 1"
+            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound">
+
+            <a-text value="Angle B" scale="2 2 2" align="center"></a-text>
+        </a-plane>
+
+        <!--
+        most of the event come from the 'aframe-proxy-event-component.min.js'
+      -->
+        <a-plane button-interaction-handler_a position="-1.5 -2 -9" height="1" width="2" color="#E21D2D"
+            event-set__mouseenter="scale: 1.2 1.2 1" event-set__mouseleave="scale: 1 1 1"
+            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound">
+            <a-text value="Angle A" scale="2 2 2" align="center"></a-text>
+        </a-plane>
+
+
+
+        <a-box src="#wheatTexture" position="-1.5 2 -5" rotation="0 45 45"
+            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.08; loop: true;" rotato scale="1 1 1"
+            event-set__mouseenter="scale: 1.2 1.2 1.2 " event-set__mouseleave="scale: 1 1 1"></a-box>
+
+        <a-box src="#maizeTexture" position="1.5 2 -5" rotation="0 45 45"
+            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.08; loop: true;" rotato scale="1 1 1"
+            event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1">
+        </a-box>
+
+
+
+
+
+        <!-- Camera and Cursor. -->
+        <a-camera>
+            <a-cursor id="cursor"
+                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                event-set__mouseenter="_event: mouseenter; color: springgreen"
+                event-set__mouseleave="_event: mouseleave; color: black" color="#11D8C4" fuse="true" timeout="10">
+            </a-cursor>
+        </a-camera>
+
+        <!-- Controllers. -->
+        <a-entity laser-controls="hand: right"></a-entity>
+    </a-scene>
+
+</body>
+
+</html>
