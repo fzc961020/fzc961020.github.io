@@ -9,30 +9,164 @@
     <script
         src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
     <script src="https://unpkg.com/aframe-spritesheet-component/dist/aframe-spritesheet-component.min.js"></script>
+    <script
+        src=" https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js "> </script>
 
     <script>
-
+        // Button A
         AFRAME.registerComponent('button-interaction-handler_a', {
             init: function () {
                 var skyEl_A = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
                     skyEl_A.setAttribute('src', '#kitchenA');
-                    skyEl_A.setAttribute('rotation', "0 90 0");
-
+                    skyEl_A.setAttribute('rotation', "-1 -95 0");
+                    B_text.setAttribute("visible", false);
+                    welcome_text.setAttribute("visible", true);
                     console.log('ckick')
+                    box1.setAttribute("visible", true);
+                    box2.setAttribute("visible", true);
+                    box3.setAttribute("visible", true);
+                    plane_B.setAttribute("visible", true)
+                    plane_A1.setAttribute("visible", true)
+                    plane_A.setAttribute("visible", true)
+                    plane_A.setAttribute("position", "-1.5 -2.5 -9")
+                    ring_A1_cury.setAttribute("visible", false);
+                    ring_A1_ingredients.setAttribute("visible", false);
+                    ring_B.setAttribute("visible", false);
+                    ring_C.setAttribute("visible", false);
                 });
             }
         });
+
+        // Button B
         AFRAME.registerComponent('button-interaction-handler_b', {
             init: function () {
                 var skyEl_B = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
                     skyEl_B.setAttribute('src', '#kitchenB');
-                    skyEl_B.setAttribute('rotation', "0 -45 0");
-                    console.log('ckick')
+                    skyEl_B.setAttribute('rotation', "0 -100 0");
+                    console.log('ckick');
+                    welcome_text.setAttribute("visible", false);
+                    B_text.setAttribute("visible", true);
+                    camera.setAttribute("fov", 90)
+                    box1.setAttribute("visible", false);
+                    box2.setAttribute("visible", false);
+                    box3.setAttribute("visible", false);
+                    plane_B.setAttribute("visible", true);
+                    plane_B.setAttribute("position","1.5 -2.5 -9");
+                    plane_A1.setAttribute("visible", false)
+                    plane_A.setAttribute("visible", true)
+                    ring_B.setAttribute("visible", true);
+                    ring_C.setAttribute("visible", true);
                 });
             }
         });
+
+        // Button A1
+        AFRAME.registerComponent('button-interaction-handler_a1', {
+            init: function () {
+                var skyEl_A1 = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_A1.setAttribute('src', '#kitchenA1');
+                    skyEl_A1.setAttribute('rotation', "-2.7 90 20");
+                    console.log('ckick');
+                    welcome_text.setAttribute("visible", false);
+                    B_text.setAttribute("visible", false);
+                    camera.setAttribute("fov", 90)
+                    box1.setAttribute("visible", false);
+                    box2.setAttribute("visible", false);
+                    box3.setAttribute("visible", false);
+                    plane_A.setAttribute("position", "0 -3.5 -9")
+                    plane_B.setAttribute("visible", false)
+                    plane_A1.setAttribute("visible", false)
+                    ring_A1_cury.setAttribute("visible", true);
+                    ring_A1_ingredients.setAttribute("visible", true);
+
+                });
+
+            }
+        });
+        // Button A1-cury
+        AFRAME.registerComponent('button-interaction-handler_a1_cury', {
+            init: function () {
+                var skyEl_A1_cury = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_A1_cury.setAttribute('src', '#kitchenA1');
+
+                });
+                this.el.addEventListener('mouseenter', function () {
+
+                });
+            }
+        });
+
+        AFRAME.registerComponent('button-interaction-handler_a1_ingredients', {
+            init: function () {
+                var skyEl_A1_ingredients = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_A1_ingredients.setAttribute('src', '#kitchenA1');
+                });
+                this.el.addEventListener('mouseenter', function () {
+
+                });
+            }
+        });
+
+        AFRAME.registerComponent('button-interaction-handler_ring_b', {
+            init: function () {
+                var skyEl_ring_b = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_ring_b.setAttribute('src', '#kitchenB1');
+                    skyEl_ring_b.setAttribute('rotation', "-5 -90 -25");
+                    B_text.setAttribute("visible", false);
+                    plane_B.setAttribute("position", "0 -3.5 -9")
+                    plane_B.setAttribute("visible", true);
+                    plane_A.setAttribute("visible", false);
+                    ring_B.setAttribute("visible", false);
+                    ring_C.setAttribute("visible", false);
+
+                });
+                this.el.addEventListener('mouseenter', function () {
+
+
+                });
+            }
+        });
+
+        AFRAME.registerComponent('button-interaction-handler_ring_c', {
+            init: function () {
+                var skyEl_ring_b = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('click', function () {
+                    skyEl_ring_b.setAttribute('src', '#kitchenB2');
+                    skyEl_ring_b.setAttribute('rotation', "-5 -90 -25");
+                    B_text.setAttribute("visible", false);
+                    plane_B.setAttribute("position", "0 -3.5 -9");
+                    plane_B.setAttribute("visible", true);
+                    plane_A.setAttribute("visible", false);
+                    ring_B.setAttribute("visible", false);
+                    ring_C.setAttribute("visible", false);
+                });
+                this.el.addEventListener('mouseenter', function () {
+
+
+                });
+            }
+        });
+
+
+        AFRAME.registerComponent("mylink", {
+            // define a url in the schema
+            schema: {
+                href: {}
+            },
+            init: function () {
+                // when clicked - change the location:
+                this.el.addEventListener("click", (e) => {
+                    window.location = this.data.href;
+                })
+            }
+        })
+
         AFRAME.registerComponent('rotato', {
 
             tick: function () {
@@ -50,14 +184,18 @@
         <a-assets>
             <audio id="click-sound" crossorigin="anonymous"
                 src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-            <img id="kitchenA" crossorigin="anonymous" src="EVOZ7290.JPG">
-            <img id="kitchenB" crossorigin="anonymous" src="JCET4061.JPG">
-            <img id="wheatTexture" src="wheat.png">
+            <img id="kitchenA" crossorigin="anonymous" src="A.png">
+            <img id="kitchenB" crossorigin="anonymous" src="B.png">
+            <img id="kitchenA1" crossorigin="anonymous" src="A1.png">
+            <img id="kitchenB1" crossorigin="anonymous" src="B1.png">
+            <img id="kitchenB2" crossorigin="anonymous" src="B2.png">
+            <img id="curryTexture" src="curry.png">
+            <img id="avocadoTexture" src="avocado.png">
             <img id="maizeTexture" src="maize.png">
 
         </a-assets>
 
-        <a-sky id="background" src="#kitchenA" rotation="0 90 0"
+        <a-sky id="background" src="#kitchenA" rotation="-1 -95 0"
             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade">
             ></a-sky>
@@ -67,39 +205,91 @@
         If we use the property align wisely, we don't need to experiment with position.
       -->
 
-        <a-plane button-interaction-handler_b position="1.5 -2 -9" height="1" width="2" color="#E21D2D"
+        <a-plane id='plane_A' button-interaction-handler_a position="-1.5 -2.5 -9" height="0.8" width="2"
+            color="#E21D2D" event-set__mouseenter="scale: 1.2 1.2 1" event-set__mouseleave="scale: 1 1 1"
+            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound">
+            <a-text value="Angle A" scale="2 2 2" align="center"></a-text>
+        </a-plane>
+
+        <a-plane id='plane_B' button-interaction-handler_b position="1.5 -2.5 -9" height="0.8" width="2" color="#E21D2D"
             event-set__mouseenter="scale: 1.2 1.2 1" event-set__mouseleave="scale: 1 1 1"
             proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound">
 
             <a-text value="Angle B" scale="2 2 2" align="center"></a-text>
         </a-plane>
 
-        <!--
-        most of the event come from the 'aframe-proxy-event-component.min.js'
-      -->
-        <a-plane button-interaction-handler_a position="-1.5 -2 -9" height="1" width="2" color="#E21D2D"
+        <a-plane id='plane_A1' button-interaction-handler_a1 position="0 -3.5 -9" height="0.8" width="4" color="#E21D2D"
             event-set__mouseenter="scale: 1.2 1.2 1" event-set__mouseleave="scale: 1 1 1"
             proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound">
-            <a-text value="Angle A" scale="2 2 2" align="center"></a-text>
+
+            <a-text value="Let's start!" scale="2 2 2" align="center"></a-text>
         </a-plane>
 
-        <a-text font="kelsonsans" value="Welcome " width="3" position="-2 1 -2" rotation="0 0 0"></a-text>
 
-        <a-box src="#wheatTexture" position="-1.5 2 -5" rotation="0 45 45"
-            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.08; loop: true;" rotato scale="1 1 1"
-            event-set__mouseenter="scale: 1.2 1.2 1.2 " event-set__mouseleave="scale: 1 1 1"></a-box>
+        <a-ring id='ring_A1_cury' button-interaction-handler_a1_cury position="5 0 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
 
-        <a-box src="#maizeTexture" position="1.5 2 -5" rotation="0 45 45"
-            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.08; loop: true;" rotato scale="1 1 1"
-            event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1">
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+        <a-ring id='ring_A1_ingredients' button-interaction-handler_a1_ingredients position="-5 0 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+
+        <a-ring id='ring_B' button-interaction-handler_ring_b position="-6 -1 -9" radius-inner="0.4" radius-outer="0.5"
+            color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1"
+            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+        <a-ring id='ring_C' button-interaction-handler_ring_c position="7 -1 -9" radius-inner="0.4" radius-outer="0.5"
+            color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1"
+            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+
+
+
+
+        <a-text id='welcome_text' font="kelsonsans" value="Welcome 
+        to my kitchen
+         (*^_^*)" width="3" position="-2 1 -2" rotation="0 0 0" look-controls></a-text>
+
+        <a-text id='B_text' font="kelsonsans" value="Try finding something new 
+         (*O_O*)?" width="3" position="-0.8 2 -2" rotation="0 0 0" visible='false' look-controls></a-text>
+
+
+
+        <a-box id='box1' src="#curryTexture" position="3 2.5 -5" rotation="0 45 45" mylink="href: https://aframe.io/;"
+            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.1; loop: true;" rotato scale="0.6 0.6 0.6"
+            event-set__mouseenter="scale: 0.8 0.8 0.8 " event-set__mouseleave="scale: 0.6 0.6 0.6"></a-box>
+
+        <a-box id='box2' src="#avocadoTexture" position="3 1 -5" rotation="0 45 45"
+            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.1; loop: true;" rotato scale="0.6 0.6 0.6"
+            event-set__mouseenter="scale: 0.8 0.8 0.8" event-set__mouseleave="scale: 0.6 0.6 0.6">
+        </a-box>
+
+        <a-box id='box3' src="#maizeTexture" position="3 -0.5 -5" rotation="0 45 45"
+            spritesheet-animation="rows: 2; columns: 8; frameDuration: 0.1; loop: true;" rotato scale="0.6 0.6 0.6"
+            event-set__mouseenter="scale: 0.8 0.8 0.8" event-set__mouseleave="scale: 0.6 0.6 0.6">
         </a-box>
 
 
 
-
-
+        <a-entity camera look-controls mouse-cursor></a-entity>
         <!-- Camera and Cursor. -->
-        <a-camera>
+        <a-camera id="camera" fov='80'>
+
             <a-cursor id="cursor"
                 animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
                 animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
