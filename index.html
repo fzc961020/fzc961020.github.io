@@ -19,7 +19,7 @@
                 var skyEl_A = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
                     skyEl_A.setAttribute('src', '#kitchenA');
-                    skyEl_A.setAttribute('rotation', "-1 -95 0");
+                    skyEl_A.setAttribute('rotation', "-1 -65 0");
                     B_text.setAttribute("visible", false);
                     welcome_text.setAttribute("visible", true);
                     console.log('ckick')
@@ -32,8 +32,8 @@
                     plane_A.setAttribute("position", "-1.5 -2.5 -9")
                     ring_A1_cury.setAttribute("visible", false);
                     ring_A1_ingredients.setAttribute("visible", false);
-                    ring_B.setAttribute("visible", false);
-                    ring_C.setAttribute("visible", false);
+                    ring_B1.setAttribute("visible", false);
+                    ring_B2.setAttribute("visible", false);
                 });
             }
         });
@@ -53,11 +53,14 @@
                     box2.setAttribute("visible", false);
                     box3.setAttribute("visible", false);
                     plane_B.setAttribute("visible", true);
-                    plane_B.setAttribute("position","1.5 -2.5 -9");
+                    plane_B.setAttribute("position", "1.5 -2.5 -9");
                     plane_A1.setAttribute("visible", false)
                     plane_A.setAttribute("visible", true)
-                    ring_B.setAttribute("visible", true);
-                    ring_C.setAttribute("visible", true);
+                    ring_B1.setAttribute("visible", true);
+                    ring_B2.setAttribute("visible", true);
+                    ring_B1_burger.setAttribute("visible", false);
+                    ring_B1_avocado.setAttribute("visible", false);
+                    ring_B2_ipad.setAttribute("visible", false);
                 });
             }
         });
@@ -68,7 +71,7 @@
                 var skyEl_A1 = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
                     skyEl_A1.setAttribute('src', '#kitchenA1');
-                    skyEl_A1.setAttribute('rotation', "-2.7 90 20");
+                    skyEl_A1.setAttribute('rotation', "2 -90 -20");
                     console.log('ckick');
                     welcome_text.setAttribute("visible", false);
                     B_text.setAttribute("visible", false);
@@ -81,20 +84,19 @@
                     plane_A1.setAttribute("visible", false)
                     ring_A1_cury.setAttribute("visible", true);
                     ring_A1_ingredients.setAttribute("visible", true);
-
                 });
-
             }
         });
+
         // Button A1-cury
         AFRAME.registerComponent('button-interaction-handler_a1_cury', {
             init: function () {
                 var skyEl_A1_cury = this.el.sceneEl.querySelector('#background');
-                this.el.addEventListener('click', function () {
-                    skyEl_A1_cury.setAttribute('src', '#kitchenA1');
-
-                });
                 this.el.addEventListener('mouseenter', function () {
+                    skyEl_A1_cury.setAttribute('src', '#kitchenA1_cury');
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    skyEl_A1_cury.setAttribute('src', '#kitchenA1');
 
                 });
             }
@@ -103,16 +105,16 @@
         AFRAME.registerComponent('button-interaction-handler_a1_ingredients', {
             init: function () {
                 var skyEl_A1_ingredients = this.el.sceneEl.querySelector('#background');
-                this.el.addEventListener('click', function () {
-                    skyEl_A1_ingredients.setAttribute('src', '#kitchenA1');
-                });
                 this.el.addEventListener('mouseenter', function () {
-
+                    skyEl_A1_ingredients.setAttribute('src', '#kitchenA1_ingredient');
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    skyEl_A1_ingredients.setAttribute('src', '#kitchenA1');
                 });
             }
         });
 
-        AFRAME.registerComponent('button-interaction-handler_ring_b', {
+        AFRAME.registerComponent('button-interaction-handler_ring_b1', {
             init: function () {
                 var skyEl_ring_b = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
@@ -122,33 +124,66 @@
                     plane_B.setAttribute("position", "0 -3.5 -9")
                     plane_B.setAttribute("visible", true);
                     plane_A.setAttribute("visible", false);
-                    ring_B.setAttribute("visible", false);
-                    ring_C.setAttribute("visible", false);
-
+                    ring_B1.setAttribute("visible", false);
+                    ring_B2.setAttribute("visible", false);
+                    ring_B1_burger.setAttribute("visible", true);
+                    ring_B1_avocado.setAttribute("visible", true);
                 });
                 this.el.addEventListener('mouseenter', function () {
-
-
                 });
             }
         });
 
-        AFRAME.registerComponent('button-interaction-handler_ring_c', {
+        AFRAME.registerComponent('button-interaction-handler_ring_b1_burger', {
             init: function () {
-                var skyEl_ring_b = this.el.sceneEl.querySelector('#background');
+                var skyEl_B1_burger = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('mouseenter', function () {
+                    skyEl_B1_burger.setAttribute('src', '#kitchenB1_burger');
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    skyEl_B1_burger.setAttribute('src', '#kitchenB1');
+                });
+            }
+        });
+        AFRAME.registerComponent('button-interaction-handler_ring_b1_avocado', {
+            init: function () {
+                var skyEl_B1_Avocado = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('mouseenter', function () {
+                    skyEl_B1_Avocado.setAttribute('src', '#kitchenB1_avocado');
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    skyEl_B1_Avocado.setAttribute('src', '#kitchenB1');
+                });
+            }
+        });
+
+        AFRAME.registerComponent('button-interaction-handler_ring_b2', {
+            init: function () {
+                var skyEl_ring_c = this.el.sceneEl.querySelector('#background');
                 this.el.addEventListener('click', function () {
-                    skyEl_ring_b.setAttribute('src', '#kitchenB2');
-                    skyEl_ring_b.setAttribute('rotation', "-5 -90 -25");
+                    skyEl_ring_c.setAttribute('src', '#kitchenB2');
+                    skyEl_ring_c.setAttribute('rotation', "-5 -90 -25");
                     B_text.setAttribute("visible", false);
                     plane_B.setAttribute("position", "0 -3.5 -9");
                     plane_B.setAttribute("visible", true);
                     plane_A.setAttribute("visible", false);
-                    ring_B.setAttribute("visible", false);
-                    ring_C.setAttribute("visible", false);
+                    ring_B1.setAttribute("visible", false);
+                    ring_B2.setAttribute("visible", false);
+                    ring_B2_ipad.setAttribute("visible", true);
                 });
                 this.el.addEventListener('mouseenter', function () {
+                });
+            }
+        });
 
-
+        AFRAME.registerComponent('button-interaction-handler_ring_b2_ipad', {
+            init: function () {
+                var skyEl_B2_Ipad = this.el.sceneEl.querySelector('#background');
+                this.el.addEventListener('mouseenter', function () {
+                    skyEl_B2_Ipad.setAttribute('src', '#kitchenB2_Ipad');
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    skyEl_B2_Ipad.setAttribute('src', '#kitchenB2');
                 });
             }
         });
@@ -187,15 +222,27 @@
             <img id="kitchenA" crossorigin="anonymous" src="A.png">
             <img id="kitchenB" crossorigin="anonymous" src="B.png">
             <img id="kitchenA1" crossorigin="anonymous" src="A1.png">
+
+            <img id="kitchenA1_cury" crossorigin="anonymous" src="A1_cury.png">
+            <img id="kitchenA1_ingredient" crossorigin="anonymous" src="A1_ingredient.png">
+
+
             <img id="kitchenB1" crossorigin="anonymous" src="B1.png">
+
+            <img id="kitchenB1_avocado" crossorigin="anonymous" src="B1_avocado.png">
+            <img id="kitchenB1_burger" crossorigin="anonymous" src="B1_burger.png">
+
             <img id="kitchenB2" crossorigin="anonymous" src="B2.png">
+
+            <img id="kitchenB2_Ipad" crossorigin="anonymous" src="B2_Uk_Ru.png">
+
             <img id="curryTexture" src="curry.png">
             <img id="avocadoTexture" src="avocado.png">
             <img id="maizeTexture" src="maize.png">
 
         </a-assets>
 
-        <a-sky id="background" src="#kitchenA" rotation="-1 -95 0"
+        <a-sky id="background" src="#kitchenA" rotation="-1 -65 0"
             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade">
             ></a-sky>
@@ -243,27 +290,51 @@
         </a-ring>
 
 
-        <a-ring id='ring_B' button-interaction-handler_ring_b position="-6 -1 -9" radius-inner="0.4" radius-outer="0.5"
+        <a-ring id='ring_B1' button-interaction-handler_ring_b1 position="-6 -1 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+        <a-ring id='ring_B1_burger' button-interaction-handler_ring_b1_burger position="-5 0 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+        <a-ring id='ring_B1_avocado' button-interaction-handler_ring_b1_avocado position="5 0 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
+
+            <a-text value="+" scale="3 3 3" align="center"></a-text>
+        </a-ring>
+
+        <a-ring id='ring_B2' button-interaction-handler_ring_b2 position="7 -1 -9" radius-inner="0.4" radius-outer="0.5"
             color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1"
             proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound" visible='false'>
 
             <a-text value="+" scale="3 3 3" align="center"></a-text>
         </a-ring>
 
-        <a-ring id='ring_C' button-interaction-handler_ring_c position="7 -1 -9" radius-inner="0.4" radius-outer="0.5"
-            color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2" event-set__mouseleave="scale: 1 1 1"
-            proxy-event="event: click; to: #background; as: fade" sound="on: click; src: #click-sound" visible='false'>
+        <a-ring id='ring_B2_ipad' button-interaction-handler_ring_b2_ipad position="2 0 -9" radius-inner="0.4"
+            radius-outer="0.5" color="#FFFFFF" event-set__mouseenter="scale: 1.2 1.2 1.2"
+            event-set__mouseleave="scale: 1 1 1" proxy-event="event: click; to: #background; as: fade"
+            sound="on: click; src: #click-sound" visible='false'>
 
             <a-text value="+" scale="3 3 3" align="center"></a-text>
         </a-ring>
-
 
 
 
 
         <a-text id='welcome_text' font="kelsonsans" value="Welcome 
-        to my kitchen
-         (*^_^*)" width="3" position="-2 1 -2" rotation="0 0 0" look-controls></a-text>
+        to our kitchen
+         (*^_^*)" width="3" position="-2 2.5 -2" rotation="0 0 0" look-controls></a-text>
 
         <a-text id='B_text' font="kelsonsans" value="Try finding something new 
          (*O_O*)?" width="3" position="-0.8 2 -2" rotation="0 0 0" visible='false' look-controls></a-text>
@@ -286,17 +357,9 @@
 
 
 
-        <a-entity camera look-controls mouse-cursor></a-entity>
+        <a-entity id="camera" camera look-controls mouse-cursor fov='80'></a-entity>
         <!-- Camera and Cursor. -->
-        <a-camera id="camera" fov='80'>
-
-            <a-cursor id="cursor"
-                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-                animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-                event-set__mouseenter="_event: mouseenter; color: springgreen"
-                event-set__mouseleave="_event: mouseleave; color: black" color="#11D8C4" fuse="true" timeout="10">
-            </a-cursor>
-        </a-camera>
+        
 
         <!-- Controllers. -->
         <a-entity laser-controls="hand: right"></a-entity>
